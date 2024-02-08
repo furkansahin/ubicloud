@@ -1,8 +1,6 @@
 <p align="center">
   <img src="https://github.com/ubicloud/ubicloud/assets/2545443/caa2d2be-26f3-4635-be78-1861886e2ebe">
 </p>
-
-
 # Ubicloud [![CI](https://github.com/ubicloud/ubicloud/actions/workflows/ci.yml/badge.svg)](https://github.com/ubicloud/ubicloud/actions/workflows/ci.yml) [![Build](https://github.com/ubicloud/ubicloud/actions/workflows/build.yml/badge.svg)](https://github.com/ubicloud/ubicloud/actions/workflows/build.yml)
 
 Ubicloud is an open, free, and portable cloud. Think of it as an open alternative to
