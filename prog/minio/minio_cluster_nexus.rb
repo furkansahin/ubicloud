@@ -73,6 +73,7 @@ class Prog::Minio::MinioClusterNexus < Prog::Base
 
   label def wait
     if minio_cluster.certificate_last_checked_at < Time.now - 60 * 60 * 24 * 30 # ~1 month
+      hop_refresh_certificates
     end
 
     when_reconfigure_set? do
