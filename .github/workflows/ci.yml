@@ -7,38 +7,11 @@ on:
   pull_request:
 
 jobs:
-  ruby-ci:
-    strategy:
-      matrix:
-        runs-on: [ubicloud]
-    continue-on-error: true
-    name: Ruby CI - ${{matrix.runs-on}}
-    runs-on: ${{matrix.runs-on}}
-
-    env:
-      DB_USER: clover
-      DB_PASSWORD: nonempty
-      DB_NAME: clover_test
-
-    services:
-      postgres:
-        image: postgres:15.4
-        env:
-          POSTGRES_USER: ${{ env.DB_USER }}
-          POSTGRES_PASSWORD: ${{ env.DB_PASSWORD }}
-          POSTGRES_DB: ${{ env.DB_NAME }}
-        ports:
-          - 5432:5432
-        options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
+  build:
+    runs-on: ubicloud
 
     steps:
-    - name: Perform superuser-only actions, then remove superuser
-      run: |
-        psql "postgres://${{ env.DB_USER }}:${{ env.DB_PASSWORD }}@localhost:5432/${{ env.DB_NAME }}" \
-          -c "CREATE EXTENSION citext; CREATE EXTENSION btree_gist; CREATE ROLE clover_password PASSWORD '${{ env.DB_PASSWORD }}' LOGIN; ALTER ROLE ${{ env.DB_USER }} NOSUPERUSER"
-
-    - name: Check out code
-      uses: actions/checkout@v4
+    - uses: actions/checkout@v4
 
     - name: Cache ruby for ARM runners
       id: cache-ruby
